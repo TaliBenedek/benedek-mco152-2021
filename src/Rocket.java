@@ -16,8 +16,7 @@ public class Rocket {
     public double getX(double time)
     {
         double xVelocity = Math.cos(angle) * velocity;
-        double x = xVelocity * time;
-        return x;
+        return xVelocity * time;
     }
 
     /**
@@ -27,8 +26,7 @@ public class Rocket {
     public double getY(double time)
     {
         double yVelocity = Math.sin(angle) * velocity;
-        double y = yVelocity * time - .5 * GRAVITY * time * time;
-        return y;
+        return yVelocity * time - .5 * GRAVITY * time * time;
     }
 
     /**
@@ -38,8 +36,7 @@ public class Rocket {
     public double getFlightTime()
     {
         double yVelocity = Math.sin(angle) * velocity;
-        double time = yVelocity / (.5 * GRAVITY);
-        return time;
+        return yVelocity / (.5 * GRAVITY);
     }
 
 }
