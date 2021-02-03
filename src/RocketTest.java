@@ -17,26 +17,16 @@ public class RocketTest {
 
     @Test
     public void getY() {
-        //given
         Rocket rocket = new Rocket(71, 35);
-
-        //when
         double y = rocket.getY(3);
-
-        //then
         Assert.assertEquals(78.07, y, 0.01);
     }
 
     @Test
     public void getFlightTime()
     {
-        //given
         Rocket rocket = new Rocket(71, 35);
-
-        //when
         double time = rocket.getFlightTime();
-
-        //then
         Assert.assertEquals(8.31, time, 0.01);
     }
 }
