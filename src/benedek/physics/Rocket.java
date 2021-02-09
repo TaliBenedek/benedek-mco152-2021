@@ -1,3 +1,5 @@
+package benedek.physics;
+
 public class Rocket {
     private final double velocity;
     private final double angle;
