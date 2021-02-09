@@ -1,9 +1,10 @@
 package benedek.physics;
 
 public class Rocket {
+    private static final double GRAVITY = 9.8;
     private final double velocity;
     private final double angle;
-    private final double GRAVITY = 9.8;
+
 
     public Rocket(double velocity, double angle)
     {
