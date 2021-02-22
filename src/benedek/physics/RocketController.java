@@ -15,20 +15,22 @@ public class RocketController {
     @FXML
     TextField secondsField;
     @FXML
-    Label xLabel;
+    Label locationLabel;
     @FXML
-    Label yLabel;
-    @FXML
-    Label flightTimeLabel;
+    RocketCanvas rocketCanvas;
 
-    public void calculateRocket(ActionEvent actionEvent) throws IOException{
+    public void calculateRocket(ActionEvent actionEvent)
+    {
         double velocity = Double.parseDouble(velocityField.getText());
         double angle = Double.parseDouble(angleField.getText());
         double seconds = Double.parseDouble(secondsField.getText());
 
         Rocket rocket = new Rocket(velocity, angle);
-        xLabel.setText(String.format("X value: %.2f", rocket.getX(seconds)));
-        yLabel.setText(String.format("Y value: %.2f", rocket.getY(seconds)));
-        flightTimeLabel.setText(String.format("Total flight time: %.2f", rocket.getFlightTime()));
+        String location = String.format("(%.2f, %.2f)",
+                rocket.getX(seconds),
+                rocket.getY(seconds));
+        locationLabel.setText(location);
+
+        rocketCanvas.draw(rocket);
     }
 }
