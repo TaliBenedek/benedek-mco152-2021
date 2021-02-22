@@ -2,22 +2,25 @@ package benedek.scrabble;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Dictionary {
     private final Scanner inputFile;
+    private final ArrayList<String> words = new ArrayList<>();
+    private final String[] dictArray;
 
     public Dictionary(String fileName) throws FileNotFoundException
     {
-        try
+        inputFile = new Scanner(new File(fileName));
+        while(inputFile.hasNextLine())
         {
-            File file = new File(fileName);
-            inputFile = new Scanner(file);
+            String[] line = inputFile.nextLine().split(" ");
+            words.add(line[0].toUpperCase());
         }
-        catch(FileNotFoundException e)
-        {
-            throw new FileNotFoundException(e.getMessage());
-        }
+        dictArray = words.toArray(new String[0]);
+        Arrays.sort(dictArray);
     }
 
     /**
@@ -26,17 +29,7 @@ public class Dictionary {
      * */
     public boolean findWord(String word)
     {
-        boolean found = false;
-        while(inputFile.hasNextLine())
-        {
-            String currLine = inputFile.nextLine().toLowerCase();
-            if(currLine.startsWith(word.toLowerCase()))
-            {
-                found = true;
-                break;
-            }
-        }
-        return found;
+        return Arrays.binarySearch(dictArray, word.toUpperCase()) > 0;
     }
 }
 
