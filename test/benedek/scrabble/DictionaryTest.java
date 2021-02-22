@@ -3,23 +3,31 @@ package benedek.scrabble;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.FileNotFoundException;
+
 public class DictionaryTest {
     @Test
-    public void testFindWord() {
-        try
-        {
-            Dictionary dictionary = new Dictionary("C:\\Users\\talib\\Documents\\Tali\\dictionary.txt");
-            //test a word that exists in the dictionary
-            String validWord = "ATT";
-            Assert.assertTrue(dictionary.findWord(validWord));
+    public void testFindWord_trueUpperCase() throws FileNotFoundException {
+            Dictionary dictionary = new Dictionary("dictionary.txt");
+            Assert.assertTrue(dictionary.findWord("ATT"));
+    }
 
-            //test a word that does not exist in the dictionary
-            String invalidWord = "sjknvkjsdn";
-            Assert.assertFalse(dictionary.findWord(invalidWord));
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.getMessage());
-        }
+    @Test
+    public void testFindWord_trueLowerCase() throws FileNotFoundException {
+        Dictionary dictionary = new Dictionary("dictionary.txt");
+        Assert.assertTrue(dictionary.findWord("att"));
+    }
+
+    @Test
+    public void testFindWord_trueMixedCase() throws FileNotFoundException {
+        Dictionary dictionary = new Dictionary("dictionary.txt");
+        Assert.assertTrue(dictionary.findWord("AtT"));
+    }
+
+    @Test
+    public void testFindWord_false() throws FileNotFoundException {
+
+        Dictionary dictionary = new Dictionary("dictionary.txt");
+        Assert.assertFalse(dictionary.findWord("sjknvkjsdn"));
     }
 }
