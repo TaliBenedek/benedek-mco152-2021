@@ -1,5 +1,6 @@
-package benedek.physics;
+package test.benedek.physics;
 
+import benedek.physics.Rocket;
 import org.junit.Assert;
 import org.junit.Test;
 

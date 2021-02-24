@@ -1,5 +1,6 @@
-package benedek.scrabble;
+package test.benedek.scrabble;
 
+import benedek.scrabble.Dictionary;
 import org.junit.Assert;
 import org.junit.Test;
 
