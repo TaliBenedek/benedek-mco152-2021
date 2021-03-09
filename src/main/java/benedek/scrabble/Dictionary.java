@@ -2,25 +2,22 @@ package benedek.scrabble;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.util.*;
 
 public class Dictionary {
-    private final Scanner inputFile;
-    private final ArrayList<String> words = new ArrayList<>();
-    private final String[] dictArray;
+    private final Map<String, String> wordsToDefinitions = new HashMap<>();
 
-    public Dictionary(String fileName) throws FileNotFoundException
+
+    public Dictionary() throws FileNotFoundException
     {
-        inputFile = new Scanner(new File(fileName));
+        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
         while(inputFile.hasNextLine())
         {
-            String[] line = inputFile.nextLine().split(" ");
-            words.add(line[0].toUpperCase());
+            wordsToDefinitions.put(inputFile.next(), // key
+                    inputFile.nextLine().trim() // value
+            );
         }
-        dictArray = words.toArray(new String[0]);
-        Arrays.sort(dictArray);
     }
 
     /**
@@ -29,7 +26,22 @@ public class Dictionary {
      * */
     public boolean findWord(String word)
     {
-        return Arrays.binarySearch(dictArray, word.toUpperCase()) > 0;
+        return wordsToDefinitions.containsKey(word.toUpperCase());
+    }
+
+    /**
+     * @param word whose definition is to be returned
+     * @return definition of the word or "" if the word does not exist
+     */
+    public String getDefinition(String word)
+    {
+        String definition = wordsToDefinitions.get(word.toUpperCase());
+        return definition == null ? "" : definition;
+    }
+
+    public int size()
+    {
+        return wordsToDefinitions.size();
     }
 }
 

@@ -17,7 +17,7 @@ public class DictionaryController {
 
 
     public void searchDictionary(ActionEvent actionEvent) throws FileNotFoundException {
-        Dictionary dictionary = new Dictionary(filePathField.getText());
+        Dictionary dictionary = new Dictionary();
         if(dictionary.findWord(wordField.getText()))
         {
             foundLabel.setText(wordField.getText() + " is in the dictionary");
