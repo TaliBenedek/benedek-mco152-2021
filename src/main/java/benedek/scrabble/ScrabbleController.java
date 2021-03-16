@@ -19,21 +19,24 @@ public class ScrabbleController
 
     LetterBag letterBag = new LetterBag();
     Dictionary dictionary;
-
+    int totalPoints = 0;
     public ScrabbleController() throws FileNotFoundException
     {
-        try{
+        try
+        {
             dictionary = new Dictionary();
         }
-        catch(FileNotFoundException e)
+        catch (FileNotFoundException e)
         {
             e.printStackTrace();
         }
     }
 
     @FXML
-    public void initialize() {
-        for (Label label : letterLabels) {
+    public void initialize()
+    {
+        for (Label label : letterLabels)
+        {
             label.setText(letterBag.nextLetter());
         }
     }
@@ -42,9 +45,9 @@ public class ScrabbleController
     {
         Label letterLabel = (Label) event.getSource();
         String letter = letterLabel.getText();
-        for(Label answerLabel: answerLabels)
+        for (Label answerLabel : answerLabels)
         {
-            if(answerLabel.getText().equals(""))
+            if ("".equals(answerLabel.getText()))
             {
                 answerLabel.setText(letter);
                 letterLabel.setText("");
@@ -52,14 +55,15 @@ public class ScrabbleController
             }
         }
     }
+
     public void onAnswerClicked(MouseEvent event)
     {
         Label label = (Label) event.getSource();
         String letter = label.getText();
         label.setText("");
-        for(Label letterLabel: letterLabels)
+        for (Label letterLabel : letterLabels)
         {
-            if(letterLabel.getText().equals(""))
+            if ("".equals(letterLabel.getText()))
             {
                 letterLabel.setText(letter);
                 break;
@@ -69,28 +73,18 @@ public class ScrabbleController
 
     public void onSubmit(ActionEvent event)
     {
-        String word = "";
-        for(Label answerLabel: answerLabels)
+        StringBuilder word = new StringBuilder();
+        for (Label answerLabel : answerLabels)
         {
-            word += answerLabel.getText();
+            word.append(answerLabel.getText());
         }
-        if(dictionary.findWord(word))
+        if (dictionary.findWord(word.toString()))
         {
-            int oldPoints = 0;
-            try
-            {
-                oldPoints = Integer.parseInt(pointsLabel.getText());
-            }
-            catch(Exception e)
-            {
-
-            }
-            int newPoints = getNumOfPoints(word);
-            pointsLabel.setText(String.valueOf(oldPoints + newPoints));
-            for(int index = 0; index < answerLabels.size(); index++)
+            calculatePoints(word.toString());
+            for (int index = 0; index < answerLabels.size(); index++)
             {
                 answerLabels.get(index).setText("");
-                if(letterLabels.get(index).getText().equals("") && !letterBag.isEmpty())
+                if ("".equals(letterLabels.get(index).getText()) && !letterBag.isEmpty())
                 {
                     letterLabels.get(index).setText(letterBag.nextLetter());
                 }
@@ -105,11 +99,11 @@ public class ScrabbleController
     public void onClear(ActionEvent event)
     {
         String[] clearedLetters = new String[7];
-        for(int labelIndex = 0, lettersIndex = 0; labelIndex < clearedLetters.length; labelIndex++)
+        for (int labelIndex = 0, lettersIndex = 0; labelIndex < clearedLetters.length; labelIndex++)
         {
             clearedLetters[labelIndex] = answerLabels.get(labelIndex).getText();
             answerLabels.get(labelIndex).setText("");
-            if(letterLabels.get(labelIndex).getText().equals(""))
+            if ("".equals(letterLabels.get(labelIndex).getText()))
             {
                 letterLabels.get(labelIndex).setText(clearedLetters[lettersIndex]);
                 lettersIndex++;
@@ -117,7 +111,7 @@ public class ScrabbleController
         }
     }
 
-    private int getNumOfPoints(String word)
+    private void calculatePoints(String word)
     {
         int numOfLetters = word.length();
         int points = 0;
@@ -143,6 +137,7 @@ public class ScrabbleController
                 break;
             default:
         }
-        return points;
+        totalPoints += points;
+        pointsLabel.setText(String.valueOf(totalPoints));
     }
 }
