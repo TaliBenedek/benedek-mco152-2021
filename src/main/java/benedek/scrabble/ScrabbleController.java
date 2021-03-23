@@ -20,6 +20,16 @@ public class ScrabbleController
     LetterBag letterBag = new LetterBag();
     Dictionary dictionary;
     int totalPoints = 0;
+
+    // Dependency Injection
+    // If a class depends on other objects, pass those objects in the constructor.
+    public ScrabbleController(
+            Dictionary dictionary,
+            LetterBag letterBag) {
+        this.dictionary = dictionary;
+        this.letterBag = letterBag;
+    }
+    
     public ScrabbleController() throws FileNotFoundException
     {
         try
