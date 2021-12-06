@@ -10,13 +10,13 @@
 
 
     <servlet>
-        <display-name>DefinitionServlet</display-name>
-        <servlet-name>DefinitionServlet</servlet-name>
-        <servlet-class>benedek.webapp.DefinitionServlet</servlet-class>
+        <display-name>WordServlet</display-name>
+        <servlet-name>WordServlet</servlet-name>
+        <servlet-class>benedek.webapp.WordServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>DefinitionServlet</servlet-name>
+        <servlet-name>WordServlet</servlet-name>
         <url-pattern>/path</url-pattern>
     </servlet-mapping>
 
