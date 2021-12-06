@@ -10,13 +10,13 @@
 
 
     <servlet>
-        <display-name>PathServlet</display-name>
-        <servlet-name>PathServlet</servlet-name>
-        <servlet-class>PathServlet</servlet-class>
+        <display-name>DefinitionServlet</display-name>
+        <servlet-name>DefinitionServlet</servlet-name>
+        <servlet-class>benedek.webapp.DefinitionServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>PathServlet</servlet-name>
+        <servlet-name>DefinitionServlet</servlet-name>
         <url-pattern>/path</url-pattern>
     </servlet-mapping>
 
