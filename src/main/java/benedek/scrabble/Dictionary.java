@@ -1,18 +1,16 @@
 package benedek.scrabble;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
 public class Dictionary {
     private final Map<String, String> wordsToDefinitions = new HashMap<>();
 
 
-    public Dictionary() throws FileNotFoundException
+    public Dictionary() throws IOException
     {
         InputStream in = getClass().getClassLoader().getResourceAsStream("dictionary.txt");
-        BufferedReader reader = new BufferedReader(new FileInputStreamReader(in));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
         while (reader.ready())
         {
             String wordEntry = reader.readLine();
