@@ -11,13 +11,21 @@ public class Dictionary {
 
     public Dictionary() throws FileNotFoundException
     {
-        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
-        while(inputFile.hasNextLine())
+        InputStream in = getClass().getClassLoader().getResourceAsStream("dictionary.txt");
+        BufferedReader reader = new BufferedReader(new FileInputStreamReader(in));
+        while (reader.ready())
         {
-            wordsToDefinitions.put(inputFile.next(), // key
-                    inputFile.nextLine().trim() // value
-            );
+            String wordEntry = reader.readLine();
+            String[] wordAndDefinition = wordEntry.split(" ", 2);
+            wordsToDefinitions.put(wordAndDefinition[0], wordAndDefinition[1]);
         }
+//        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
+//        while(inputFile.hasNextLine())
+//        {
+//            wordsToDefinitions.put(inputFile.next(), // key
+//                    inputFile.nextLine().trim() // value
+//            );
+//        }
     }
 
     /**

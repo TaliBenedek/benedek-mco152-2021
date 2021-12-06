@@ -22,9 +22,6 @@ javafx {
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
-sourceCompatibility = 15
-targetCompatibility = 15
-
 test {
     useJUnitPlatform()
 }
