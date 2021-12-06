@@ -3,7 +3,8 @@ package benedek.scrabble;
 import java.io.*;
 import java.util.*;
 
-public class Dictionary {
+public class Dictionary
+{
     private final Map<String, String> wordsToDefinitions = new HashMap<>();
 
 
@@ -15,7 +16,10 @@ public class Dictionary {
         {
             String wordEntry = reader.readLine();
             String[] wordAndDefinition = wordEntry.split(" ", 2);
-            wordsToDefinitions.put(wordAndDefinition[0], wordAndDefinition[1]);
+            String definition = wordAndDefinition.length > 1 ? wordAndDefinition[1].trim() : null;
+            wordsToDefinitions.put(
+                    wordAndDefinition[0], //key
+                    definition); //value
         }
 //        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
 //        while(inputFile.hasNextLine())
@@ -29,7 +33,7 @@ public class Dictionary {
     /**
      * @param word to be searched for in the dictionary
      * @return a boolean value reflecting if the word was found or not
-     * */
+     */
     public boolean findWord(String word)
     {
         return wordsToDefinitions.containsKey(word.toUpperCase());
