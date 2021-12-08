@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class DictionaryController {
     @FXML
@@ -16,7 +17,8 @@ public class DictionaryController {
     Label foundLabel;
 
 
-    public void searchDictionary(ActionEvent actionEvent) throws FileNotFoundException {
+    public void searchDictionary(ActionEvent actionEvent) throws IOException
+    {
         Dictionary dictionary = new Dictionary();
         if(dictionary.findWord(wordField.getText()))
         {

@@ -1,7 +1,8 @@
 package benedek.physics;
 
-import org.junit.Assert;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class RocketTest {
     @Test
@@ -14,14 +15,14 @@ public class RocketTest {
         double x = rocket.getX(3);
 
         //then
-        Assert.assertEquals(174.47, x, 0.01);
+        Assertions.assertEquals(174.47, x, 0.01);
     }
 
     @Test
     public void getY() {
         Rocket rocket = new Rocket(71, 35);
         double y = rocket.getY(3);
-        Assert.assertEquals(78.07, y, 0.01);
+        Assertions.assertEquals(78.07, y, 0.01);
     }
 
     @Test
@@ -29,6 +30,6 @@ public class RocketTest {
     {
         Rocket rocket = new Rocket(71, 35);
         double time = rocket.getFlightTime();
-        Assert.assertEquals(8.31, time, 0.01);
+        Assertions.assertEquals(8.31, time, 0.01);
     }
 }

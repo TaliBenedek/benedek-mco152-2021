@@ -3,15 +3,15 @@ package benedek.physics;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
 
 import static org.mockito.Mockito.*;
 
 public class RocketControllerTest
 {
-
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         com.sun.javafx.application.PlatformImpl.startup(()->{});
     }

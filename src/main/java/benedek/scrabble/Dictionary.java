@@ -1,17 +1,17 @@
 package benedek.scrabble;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.*;
 
-public class Dictionary {
+public class Dictionary
+{
     private final Map<String, String> wordsToDefinitions = new HashMap<>();
 
 
-    public Dictionary() throws FileNotFoundException
+    public Dictionary() throws IOException
     {
-        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
+        InputStream in = getClass().getClassLoader().getResourceAsStream("dictionary.txt");
+        Scanner inputFile = new Scanner(in);
         while(inputFile.hasNextLine())
         {
             wordsToDefinitions.put(inputFile.next(), // key
@@ -23,7 +23,7 @@ public class Dictionary {
     /**
      * @param word to be searched for in the dictionary
      * @return a boolean value reflecting if the word was found or not
-     * */
+     */
     public boolean findWord(String word)
     {
         return wordsToDefinitions.containsKey(word.toUpperCase());
