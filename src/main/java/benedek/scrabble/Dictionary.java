@@ -11,23 +11,13 @@ public class Dictionary
     public Dictionary() throws IOException
     {
         InputStream in = getClass().getClassLoader().getResourceAsStream("dictionary.txt");
-        BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-        while (reader.ready())
+        Scanner inputFile = new Scanner(in);
+        while(inputFile.hasNextLine())
         {
-            String wordEntry = reader.readLine();
-            String[] wordAndDefinition = wordEntry.split(" ", 2);
-            String definition = wordAndDefinition.length > 1 ? wordAndDefinition[1].trim() : null;
-            wordsToDefinitions.put(
-                    wordAndDefinition[0], //key
-                    definition); //value
+            wordsToDefinitions.put(inputFile.next(), // key
+                    inputFile.nextLine().trim() // value
+            );
         }
-//        Scanner inputFile = new Scanner(new FileReader("src/main/resources/dictionary.txt"));
-//        while(inputFile.hasNextLine())
-//        {
-//            wordsToDefinitions.put(inputFile.next(), // key
-//                    inputFile.nextLine().trim() // value
-//            );
-//        }
     }
 
     /**
